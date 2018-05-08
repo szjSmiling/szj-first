@@ -39,25 +39,33 @@ module.exports = {
   // },
   module:{
     rules:[
-      // { test: /\.txt$/, use: 'raw-loader' },
       {
-        test:/\.(png|jpe?g|gif)$/,
-        loader:'url-loader',//小于limit字节的文件会被转为DataURl，大于limit的还会使用file-loader进行copy;等加写法===>use: 'url-loader?limit=1024  
+        test:/\.js$/,
+        loader:'babel-loader',
+        exclude: path.resolve(__dirname,"./node_modules"),//打包除这个文件之外的文件
+      },
+      {
+        test:/\.(png|jpeg|jpg|gif)$/,
+        loader:'url-loader',//小于limit字节的文件会被转为base64位DataURl，大于limit的还会使用file-loader进行copy;等加写法===>use: 'url-loader?limit=1024  
         options:{
           limit:819200,// 单位字节
           // name:'[path][name].[ext]',
-          // name:path.join(__dirname,'[name].[ext]'),// 配置path.join，打包后图片路径才正确。
-          name:'[name].[ext]',
+          // name:path.join(__dirname,'[name].[ext]'),
+          name:'[hash:8].[name].[ext]',
           outputPath:'img/' // 表示输出文件路径前缀
         }
       },
       {
         test:/\.css$/,
-        loader:['style-loader','css-loader','autoprefixer-loader']
-      }, //autoprefixer-loader,自动增添兼容写法
+        loader:[
+          'style-loader',
+          { loader:' css-loader ',options:{  modules: true,importLoaders :1 }} ,
+          'postcss-loader'
+        ]
+      }, 
       {
         test:/\.less$/,
-        loader:['style-loader','css-loader','autoprefixer-loader','less-loader']
+        loader:['style-loader','css-loader','less-loader']
       },
 
     ]
