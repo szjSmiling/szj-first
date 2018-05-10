@@ -1,8 +1,9 @@
 
 require('./a.js');
 require('./b.js');
-require('./less/style.less');
-require('./less/index.less');
+require('src/less/index.less');
+require('src/less/index2.css');
+require('src/less/style.less');
 console.log('我是index.js');
 const greet = require('./greet.js');  
 function bindButtonElementEvent(btnElement) {  

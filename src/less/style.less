@@ -9,27 +9,32 @@
   }
 }
 .div3{
+  width: 400px;
+  height: 200px;
   color:#00f;
+  background:url('~src/images/b_flight3.jpg');
+  background-size:400px 200px;
 }
 .img1:hover{
   border:1px solid #eee;
   margin:20px 0 0 50px;
-  content:url(../images/b_flight2.jpg);
+  cursor: pointer;
+  content:url('~src/images/b_flight2.jpg');
 }
 
 @keyframes mymove
 {
-  0% {margin-left:0px;transform: rotate(72deg)}
-  25% {margin-left:200px;transform: rotate(144deg)}
-  50% {margin-top:100px;transform: rotate(216deg)}
-  75% {margin-left:0;transform: rotate(288deg)}
-  100% {margin-top:0;transform: rotate(360deg)}
+  0% {margin-left:0px;transform: rotate(72deg) scale(1);border-radius:100%;}
+  25% {margin-left:200px;transform: rotate(144deg) scale(0.8);border-radius:100%;}
+  50% {margin-top:100px;transform: rotate(216deg) scale(0.6);border-radius:100%;}
+  75% {margin-left:0;transform: rotate(288deg) scale(0.4);border-radius:100%;}
+  100% {margin-top:0;transform: rotate(360deg) scale(0.2);border-radius:100%;}
 }
 @-webkit-keyframes mymove /*Safari and Chrome*/
 {
-  0% {margin-left:0px;transform: rotate(72deg)}
-  25% {margin-left:200px;transform: rotate(144deg)}
-  50% {margin-top:100px;transform: rotate(216deg)}
-  75% {margin-left:0;transform: rotate(288deg)}
-  100% {margin-top:0;transform: rotate(360deg)}
+  0% {margin-left:0px;transform: rotate(72deg) scale(1);border-radius:100%;}
+  25% {margin-left:200px;transform: rotate(144deg) scale(0.8);border-radius:100%;}
+  50% {margin-top:100px;transform: rotate(216deg) scale(0.6);border-radius:100%;}
+  75% {margin-left:0;transform: rotate(288deg) scale(0.4);border-radius:100%;}
+  100% {margin-top:0;transform: rotate(360deg) scale(0.2);border-radius:100%;}
 }
