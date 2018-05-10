@@ -5,6 +5,22 @@ const HtmlWebpackPlugin = require('html-webpack-plugin'); // 通过 npm 安装
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 
+// const devModule = require('./config/dev.js');
+// const proModule = require('./config/prod.js');
+// let finalModule = {};
+// let ENV = process.env.NODE_ENV;// 此处变量可由命令行转入
+// switch (ENV) {
+//   case 'dev':
+//     finalModule = devModule;
+//     break;
+//   case 'prod':
+//     finalModule = proModule;
+//     break;
+//   default:
+//     break;
+// }
+// module.exports = finalModule;
+
 module.exports = {
   // entry:{
     // app:[path.join(__dirname,'src','index.js'),'webpack-dev-server/client?http://localhost:7000/']
@@ -45,8 +61,8 @@ module.exports = {
   // },
 
   //webpack输出真实的文件，而webpack-dev-server输出的文件只存在于内存中,不输出真实的文件;
-  devServer: {//指定了服务器资源的根目录，如果不写入contentBase的值，那么contentBase默认是项目的目录。
-    // contentBase: path.join(__dirname, "build"),
+  devServer: {//指定了服务器资源的根目录，如果不写入contentBase的值，那么contentBase默认是项目的目录,js,css不会引入。
+    contentBase: path.join(__dirname, "build"),
     port:8181,//port配置属性指定了开启服务的端口号：
     // host:'0.0.0.0',//host设置的是服务器的主机号：
     historyApiFallback:{//这个配置属性是用来应对返回404页面时定向到特定页面用的;// historyApiFallback:true,//不跳转
@@ -68,9 +84,8 @@ module.exports = {
   module:{
     rules:[
       {
-        test:/\.js$/,
-        loader:'babel-loader',
-        // exclude: path.resolve(__dirname,"./node_modules"),//打包除这个文件之外的文件
+        test:/\.js$/,loader:'babel-loader',
+        exclude: path.resolve(__dirname,"./node_modules"),//打包除这个文件之外的文件
       },
       {
         test:/\.(png|jpeg|jpg|gif)$/,
@@ -107,7 +122,7 @@ module.exports = {
   },
   plugins:[
       new webpack.HotModuleReplacementPlugin(),
-      new CleanWebpackPlugin(['build']),
+      // new CleanWebpackPlugin(['build']),
       new HtmlWebpackPlugin({// 会自动生成一个html文件，并且引入打包后的css，js，如果有模板，就定义根据模板来生成，否则生成的是个空的html；
         template: "./index.html",
         filename: "index.html"
